@@ -3,14 +3,15 @@ class CountKnightMovement
     return 0 if first_position == last_position
 
     if first_position == "f5"
-      if last_position == "d5"
-        return 2
-    	elsif last_position == "e6"
-        return 2
+      if ["e3","d6", "e7"].any?(last_position)
+        return 1
 			end
     end
 
-    1
-  end
+    if first_position != "f5"
+      return 1
+    end
 
+    return 2
+  end
 end
