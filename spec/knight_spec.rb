@@ -30,4 +30,12 @@ describe 'knight movement' do
   it 'takes two moves from f5 to e6' do
     expect(subject.execute('f5', 'e6')).to eq(2)
   end
+
+  it 'takes two moves from d5 to c6' do
+    expect(subject.execute('d5', 'c6')).to eq(2)
+  end
+
+  it 'takes two moves from e5 to c6' do
+    expect(subject.execute('e5', 'c6')).to eq(1)
+  end
 end
