@@ -29,12 +29,14 @@ class CountKnightMovement
   def one_move_away_from_f5?(last_position)
     converted = convert_from_chess_notation("f5")
 
+    (target_spaces(converted) + ["h6", "h4", "g3", "e3", "d4", "d6", "e7"]).any?(last_position)
+  end
+
+  def target_spaces(converted)
     target_row = converted[:row] + 2
     target_column = converted[:column] + 1
 
-    target_space = "g7" # convert_to_chess_notation(target_row, target_column)
-
-    [target_space, "h6", "h4", "g3", "e3", "d4", "d6", "e7"].any?(last_position)
+    ["g7"]
   end
 
   def convert_from_chess_notation(position)
