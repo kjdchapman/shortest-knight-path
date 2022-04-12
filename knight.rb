@@ -27,23 +27,27 @@ class CountKnightMovement
   end
 
   def one_move_away_from_f5?(last_position)
-    converted = convert_from_chess_notation("f5")
+    row, column = convert_to_row_and_column("f5")
 
-    (target_spaces(converted) + ["h6", "h4", "g3", "e3", "d4", "d6", "e7"]).any?(last_position)
+    (target_spaces(row, column) + ["h6", "h4", "g3", "e3", "d4", "d6", "e7"]).any?(last_position)
   end
 
-  def target_spaces(converted)
-    target_row = converted[:row] + 2
-    target_column = converted[:column] + 1
+  def target_spaces(row, column)
+    target_row = row + 2
+    target_column = column + 1
 
-    ["g7"]
+    [ convert_to_chess_notation(target_row, target_column) ]
   end
 
-  def convert_from_chess_notation(position)
-    {
-      column: letter_lookup[position[0]],
-      row: position[1].to_i
-    }
+  def convert_to_chess_notation(row, column)
+    letter_lookup.invert[column] + row.to_s
+  end
+
+  def convert_to_row_and_column(chess_notation)
+    row = chess_notation[1].to_i
+    column = letter_lookup[chess_notation[0]]
+
+    return row, column
   end
 
   def letter_lookup

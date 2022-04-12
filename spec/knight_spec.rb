@@ -43,17 +43,31 @@ describe 'knight movement' do
     expect(subject.execute('e5', 'c6')).to eq(1)
   end
 
-  describe '#convert_from_chess_notation' do
-    it 'returns {5, 6} when given f5' do
-      expect(subject.convert_from_chess_notation("f5")).to eq({ column: 6, row: 5 })
+  describe '#convert_to_row_and_column' do
+    it 'returns [5, 6] when given f5' do
+      expect(subject.convert_to_row_and_column("f5")).to eq([5, 6])
     end
 
-    it 'returns {1, 1} when given a1' do
-      expect(subject.convert_from_chess_notation("a1")).to eq({ column: 1, row: 1 })
+    it 'returns [1, 1] when given a1' do
+      expect(subject.convert_to_row_and_column("a1")).to eq([1, 1])
     end
 
-    it 'returns {1, 2} when given a2' do
-      expect(subject.convert_from_chess_notation("a2")).to eq({ column: 1, row: 2 })
+    it 'returns [1, 2] when given a2' do
+      expect(subject.convert_to_row_and_column("a2")).to eq([2, 1])
+    end
+  end
+
+  describe '#convert_to_chess_notation' do
+    it 'returns "g7" given row 7, column 7' do
+      expect(subject.convert_to_chess_notation(7, 7)).to eq("g7")
+    end
+
+    it 'returns "a1" given row 1, column 1' do
+      expect(subject.convert_to_chess_notation(1, 1)).to eq("a1")
+    end
+
+    it 'returns "a2" given row 2, column 1' do
+      expect(subject.convert_to_chess_notation(2, 1)).to eq("a2")
     end
   end
 end
